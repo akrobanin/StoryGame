@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Interactive Story Engine</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="main-menu" class="screen">
+    <div class="menu-container">
+      <h1 class="title">📜 Хроники Выбора</h1>
+      <button id="btn-play" class="menu-btn">▶ Играть</button>
+      <button id="btn-create" class="menu-btn secondary">🛠 Создать сюжет</button>
+      <p class="hint">Для создания сюжетов и персонажей</p>
+    </div>
+  </div>
+
+  <div id="story-list-screen" class="screen hidden">
+    <div class="menu-container">
+      <h2>Выберите историю</h2>
+      <div id="stories-container"></div>
+      <button id="btn-back-menu" class="menu-btn secondary">← Назад</button>
+    </div>
+  </div>
+
+  <div id="game-screen" class="screen hidden">
+    <div id="bg-layer"></div>
+    <div id="char-layer"></div>
+    <div id="fade-overlay"></div>
+    
+    <div id="game-ui">
+      <button id="g-save-btn">💾</button>
+      <button id="g-load-btn">📂</button>
+      <button id="g-exit-btn">📋</button>
+      <button id="g-back-admin-btn" class="hidden" style="background:#ef4444">🔙</button>
+    </div>
+
+    <div id="dialogue-box">
+      <div id="g-char-name"></div>
+      <div id="g-text"></div>
+      <button id="g-next-btn" class="hidden">➤</button>
+    </div>
+
+    <div id="controls">
+      <div id="choices-container"></div>
+      <div id="timer-bar" class="hidden"><div id="timer-fill"></div></div>
+    </div>
+  </div>
+
+  <div id="admin-panel" class="screen hidden">
+    <header>
+      <h2>📐 Редактор историй</h2>
+      <div class="row">
+        <button id="toggle-theme">🌓</button>
+        <button id="export-btn">💾</button>
+        <input type="file" id="import-input" hidden accept=".json">
+        <button id="import-btn">📂</button>
+        <button id="preview-btn" class="btn-success">▶ Тест</button>
+        <button id="logout-btn">🚪</button>
+      </div>
+    </header>
+    <div class="tabs">
+      <div class="tab active" data-tab="vars">🔢</div>
+      <div class="tab" data-tab="chars">👥</div>
+      <div class="tab" data-tab="audio">🎵</div>
+      <div class="tab" data-tab="events">🎲</div>
+      <div class="tab" data-tab="stories">📖</div>
+    </div>
+    <div class="workspace">
+      <div class="sidebar" id="sidebar-list"></div>
+      <div class="canvas-area" id="editor-canvas">
+        <svg id="connections">
+          <defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="var(--accent)"/></marker></defs>
+        </svg>
+      </div>
+      <div class="prop-panel" id="prop-panel">
+        <h3>Свойства</h3>
+        <div id="prop-form" class="hidden flex-col"></div>
+        <div id="block-actions" class="hidden">
+          <button id="add-block-btn" class="btn-success">+ Блок</button>
+          <button id="delete-block-btn" class="btn-danger" style="margin-top:8px">🗑</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="pass-modal" class="modal">
+    <div class="modal-content flex-col">
+      <h3>🔐 Код доступа</h3>
+      <input type="password" id="admin-pass-input" placeholder="Введите код...">
+      <div class="modal-actions">
+        <button id="cancel-pass">Отмена</button>
+        <button id="submit-pass">Войти</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
